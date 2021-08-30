@@ -21,28 +21,30 @@ public class AutoCreatedWishlistTest {
 
     private static WebDriver driver;
     private LoginPage loginPage;
+    private WishListsPage wishListsPage;
 
     @BeforeAll
     static void beforeAll() throws IOException {
         driver = SingleDriver.getSingleDriverInstance().getDriver();
 
     }
-
-    @AfterAll
-    static void afterAll() throws IOException {
-       // SingleDriver.getSingleDriverInstance().closeDriver();
-
-    }
-
     @BeforeEach
-    void setUp() throws IOException {
+    void setUp () throws IOException {
         loginPage = new LoginPage();
     }
 
+    @AfterAll
+    static void afterAll() throws IOException {
+       SingleDriver.getSingleDriverInstance().closeDriver();
+
+    }
+
     @AfterEach
-    void tearDown() {
-        //
-        // driver.manage().deleteAllCookies();
+    void tearDown() throws IOException {
+         WishListsPage wishListsPage = new WishListsPage();
+         wishListsPage.deleteWishList();
+         driver.navigate().refresh();
+         driver.manage().deleteAllCookies();
     }
 
     @TmsLink(value = "7T")
@@ -62,25 +64,21 @@ public class AutoCreatedWishlistTest {
         driver.navigate().back();
         driver.navigate().refresh();
         wishListsPage.openWishList();
-        System.out.println(productNameExpected);
-        System.out.println(wishListsPage.getProductNameFromList());
-        System.out.println("!!!!!!");
 
-        assertEquals(productNameExpected, wishListsPage.getProductNameFromList(),
-                "List does not contain selected product");
-
-
-
-        // afterAll("Choose account Page",
-            //    () -> assertFalse(result), "There was existing wishlist",
-           //     () -> assertFalse(), "fuck"
-          //      );
+        assertAll("Choose account Page",
+                () -> assertFalse(result, "Wishlist already exists"),
+                () -> assertTrue(wishListsPage.getProductNameFromList().contains(productNameExpected),
+                        "List does not contain selected product" + wishListsPage.getProductNameFromList())
+        );
 
 
 
 
-      //  assertTrue(loginPage.getErrorMessagePasswordRequiredText().contains(""),
-              //  "Incorrect error message was shown:" + loginPage.getErrorMessagePasswordRequiredText());
+
+
+
+
+
     }
 
 

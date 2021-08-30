@@ -1,9 +1,6 @@
 package PageObjects;
 import DriverTools.SingleDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,6 +15,7 @@ public class WishListsPage {
     private final By products = By.xpath("//a[@class=\"product-name\"]");
     private final By wishListLink = By.xpath("//tr[contains(@id, 'wishlist_')]/td[1]/a");
     private final By productTitle = By.id("s_title");
+    private final By deleteListLink = By.xpath("//td[@class='wishlist_delete']/a");
     private List<WebElement> productsList;
 
     public WishListsPage() throws IOException {
@@ -61,10 +59,17 @@ public class WishListsPage {
     }
 
     public String getProductNameFromList () {
+
         return driver.findElement(productTitle).getText();
     }
 
+    public WishListsPage deleteWishList () {
+        driver.findElement(deleteListLink).click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
 
-
+        alert.accept();
+        return this;
+    }
 
 }
