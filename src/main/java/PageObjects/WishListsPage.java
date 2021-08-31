@@ -16,7 +16,10 @@ public class WishListsPage {
     private final By wishListLink = By.xpath("//tr[contains(@id, 'wishlist_')]/td[1]/a");
     private final By productTitle = By.id("s_title");
     private final By deleteListLink = By.xpath("//td[@class='wishlist_delete']/a");
+    private final By wishListNameField = By.id("name");
+    private final By openCartLink = By.xpath("//a[@title='View my shopping cart']");
     private List<WebElement> productsList;
+
 
     public WishListsPage() throws IOException {
         driver = SingleDriver.getSingleDriverInstance().getDriver();
@@ -70,6 +73,27 @@ public class WishListsPage {
 
         alert.accept();
         return this;
+    }
+
+    public String generateListName () {
+        String tempName = "";
+        for (int i = 0; i <= 10  ; i++) {
+            int rndChar = 97 + (new Random().nextInt(122 - 97));
+            Character tempChar = (char) rndChar;
+            tempName = tempName + tempChar;
+        }
+        return tempName;
+    }
+
+    public WishListsPage createWishList () {
+        driver.findElement(wishListNameField).sendKeys(generateListName());
+        driver.findElement(saveButton).click();
+        return this;
+    }
+
+    public CartPage openCart () throws IOException {
+        driver.findElement(openCartLink).click();
+        return new CartPage();
     }
 
 }

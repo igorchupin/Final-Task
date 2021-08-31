@@ -13,6 +13,7 @@ public class HomePage {
     private final WebDriver driver;
     private final By accountName = By.xpath("//a[@class='account']/span");
     private final By myWishlistsButton = By.xpath("//a[@title='My wishlists']");
+    private final By openCartLink = By.xpath("//a[@title='View my shopping cart']");
 
     public HomePage() throws IOException {
         driver = SingleDriver.getSingleDriverInstance().getDriver();
@@ -31,5 +32,9 @@ public class HomePage {
         return new WishListsPage();
     }
 
+    public CartPage openCart () throws IOException {
+        driver.findElement(openCartLink).click();
+        return new CartPage();
+    }
 
 }

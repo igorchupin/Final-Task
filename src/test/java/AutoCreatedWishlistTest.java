@@ -21,7 +21,7 @@ public class AutoCreatedWishlistTest {
 
     private static WebDriver driver;
     private LoginPage loginPage;
-    private WishListsPage wishListsPage;
+
 
     @BeforeAll
     static void beforeAll() throws IOException {
@@ -70,34 +70,7 @@ public class AutoCreatedWishlistTest {
                 () -> assertTrue(wishListsPage.getProductNameFromList().contains(productNameExpected),
                         "List does not contain selected product" + wishListsPage.getProductNameFromList())
         );
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-/*
-  assertAll("Choose account Page",
-                () -> assertTrue(chooseAccountPage.getTextThatUserWasLoggedOut().matches("You are logged out of:"),
-                        String.format("Incorrect page was opened. The opened page does not contain text 'You are logged out of:'" +
-                                                                            " and has the title: %s", driver.getTitle())),
-                () -> assertEquals(username, chooseAccountPage.getAccountName(),
-                        "Incorrect user account name is shown")
-        );
- */
