@@ -113,9 +113,5 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Thanks for using https://jar-download.com -->
-
-
-        <!-- Thanks for using https://jar-download.com -->
     </dependencies>
 </project>
