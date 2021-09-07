@@ -1,0 +1,14 @@
+{"Environment":"locally",
+  "Platform":"Windows ",
+  "PlatformVersion":"10",
+  "BrowserName":"chrome",
+  "BrowserVersion":"91.0",
+  "URL" : "http://localhost",
+  "Port" : "4444",
+
+  "Comment" :   ["Environment = locally/selenium grid/sauce labs/docker",
+                "BrowserName = chrome/firefox",
+                "URL= http://localhost -> for Selenium Grid and Docker OR full URL for sauce labs (https://igor111ddd:698a9d1b-a606-4a8b-a5b3-c0a71a7bae09@ondemand.eu-central-1.saucelabs.com:443/wd/hubhttps://igor111ddd:698a9d1b-a606-4a8b-a5b3-c0a71a7bae09@ondemand.eu-central-1.saucelabs.com:443/wd/hub)"
+  ]
+}
+
